@@ -5,6 +5,9 @@ const NUM_ROWS = 10;
 const NUM_COLS = 10;
 const STITCH_SIZE = 50;
 
+const COLOUR_PRIMARY = "dimgrey";
+const COLOUR_SECONDARY = "whitesmoke";
+
 const PROJECT = Array.from({ length: NUM_ROWS }, (_, i) =>
   Array.from({ length: NUM_COLS }, (_, j) => ({
     row: i,
@@ -19,16 +22,24 @@ const PROJECT = Array.from({ length: NUM_ROWS }, (_, i) =>
   }))
 );
 
-for (let i = 0; i < PROJECT.length; ++i) {
-  if (PROJECT[i].length > 0 && PROJECT[i][0].isPrimaryColour) {
-    CTX.fillStyle = "dimgrey";
+// DRAWING
+
+function drawStitch(stitch) {
+  if (stitch.isPrimaryColour) {
+    CTX.fillStyle = COLOUR_PRIMARY;
   } else {
-    CTX.fillStyle = "whitesmoke";
+    CTX.fillStyle = COLOUR_SECONDARY;
   }
   CTX.fillRect(
-    0,
-    i * STITCH_SIZE,
-    PROJECT[i].length * STITCH_SIZE,
+    STITCH_SIZE * stitch.col,
+    STITCH_SIZE * stitch.row,
+    STITCH_SIZE,
     STITCH_SIZE
   );
+}
+
+for (let i = 0; i < PROJECT.length; ++i) {
+  for (let j = 0; j < PROJECT[i].length; ++j) {
+    drawStitch(PROJECT[i][j]);
+  }
 }
