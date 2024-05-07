@@ -9,12 +9,18 @@ const DC_SE1 = 3;
 const DC_SE2 = 4;
 
 const MILLISECONDS_PER_LOOP = 20;
+const CANVAS_WIDTH = 1000;
+const CANVAS_HEIGHT = 1000;
+
 const NUM_ROWS = 10;
 const NUM_COLS = 10;
 const STITCH_SIZE = 50;
 
 const COLOUR_PRIMARY = "dimgrey";
 const COLOUR_SECONDARY = "whitesmoke";
+
+CANVAS.width = CANVAS_WIDTH;
+CANVAS.height = CANVAS_HEIGHT;
 
 const PROJECT = Array.from({ length: NUM_ROWS }, (_, i) =>
   Array.from({ length: NUM_COLS }, (_, j) => ({
@@ -82,6 +88,7 @@ function drawStitch(stitch) {
 }
 
 window.setInterval(() => {
+  CTX.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   for (let i = 0; i < PROJECT.length; ++i) {
     for (let j = 0; j < PROJECT[i].length; ++j) {
       drawStitch(PROJECT[i][j]);
