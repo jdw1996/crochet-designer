@@ -8,10 +8,11 @@ export type StitchGridProps = {
 export function StitchGrid({ pattern }: StitchGridProps) {
   return (
     <table>
-      {pattern.rows.map((row) => (
-        <tr>
-          {row.stitches.map(() => (
+      {pattern.rows.map((row, i) => (
+        <tr key={`${i}`}>
+          {row.stitches.map((_, j) => (
             <td
+              key={`${j}`}
               style={{
                 backgroundColor: row.isPrimaryColour
                   ? pattern.colour_primary
