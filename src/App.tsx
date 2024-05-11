@@ -1,35 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { StitchGrid } from "./StitchGrid";
+import { OMPattern } from "./util";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [numRows, setNumRows] = useState(21);
+  const [numCols, setNumCols] = useState(21);
+  const [pattern, setPattern] = useState<OMPattern>({
+    colour_primary: "dimgrey",
+    colour_secondary: "whitesmoke",
+    rows: Array.from({ length: numRows }, (_, i) => ({
+      isPrimaryColour: i % 2 === 0,
+      stitches: Array.from({ length: numCols }, (_, j) => ({
+        col: j,
+        row: i,
+        dcs: new Set(),
+      })),
+    })),
+  });
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  return <StitchGrid pattern={pattern} />;
 }
 
-export default App
+export default App;
