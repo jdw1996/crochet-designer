@@ -14,6 +14,7 @@ export function StitchGrid({ pattern, toggleDC_S }: StitchGridProps) {
         .reverse()
         .map((row, i) => (
           <tr key={`${i}`}>
+            <td>{pattern.rows.length - i}</td>
             {row.stitches.map((stitch, j) => (
               <td
                 key={`${j}`}
@@ -28,6 +29,12 @@ export function StitchGrid({ pattern, toggleDC_S }: StitchGridProps) {
             ))}
           </tr>
         ))}
+      <tr>
+        <td>{/* Intentionally left blank */}</td>
+        {Array.from({ length: pattern.rows[0].stitches.length }).map((_, i) => (
+          <td key={`${i}`}>{i + 1}</td>
+        ))}
+      </tr>
     </table>
   );
 }
