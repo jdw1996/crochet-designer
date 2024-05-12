@@ -3,8 +3,8 @@ import { StitchGrid } from "./StitchGrid";
 import { OMDC, OMPattern } from "./util";
 
 function App() {
-  const [numRows, setNumRows] = useState(21);
-  const [numCols, setNumCols] = useState(21);
+  const [numRows] = useState(21);
+  const [numCols] = useState(21);
   const [pattern, setPattern] = useState<OMPattern>({
     colour_primary: "dimgrey",
     colour_secondary: "whitesmoke",
