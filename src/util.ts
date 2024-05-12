@@ -10,6 +10,7 @@ export type OMStitch = {
   col: number;
   row: number;
   dcs: Set<OMDC>;
+  isCovered: boolean;
 };
 
 export type OMRow = {
